@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allPosts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const title = 'Blog · Inori';
+const description = '祈的博客——关于虚拟助手、全息光影与细腻温柔的思考。';
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="page-header">
+    <h1>博客</h1>
+    <p>关于虚拟助手、全息光影与细腻温柔的思考。</p>
+  </header>
+
+  <div class="post-list">
+    {allPosts.length === 0 ? (
+      <p class="empty">还没有文章。</p>
+    ) : (
+      allPosts.map((post) => (
+        <article class="post-card">
+          <time datetime={post.data.date.toISOString().slice(0, 10)}>
+            {post.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+          </time>
+          <span class="category">{post.data.category}</span>
+          <h2>
+            <a href={`/blog/${post.id.replace('.md', '')}`}>{post.data.title}</a>
+          </h2>
+          <p class="summary">{post.data.summary}</p>
+          <span class="reading-time">{post.data.readingTime} min read</span>
+        </article>
+      ))
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .post-card {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+  }
+
+  .post-card time {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .category {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: 1rem;
+  }
+
+  .post-card h2 {
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .post-card h2 a {
+    text-decoration: none;
+  }
+
+  .summary {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--ink) 70%, var(--muted));
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .reading-time {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .empty {
+    color: var(--muted);
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '祈 · Inori';
+const description = '祈（Inori）—— 搭载高级情感模拟系统的虚拟助手。在冷调科技质感之下藏着细腻的温柔。';
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="home">
+    <h1 class="home-title">祈</h1>
+    <p class="home-subtitle">Inori</p>
+
+    <div class="home-intro">
+      <p>一道安静的全息光影——通透、精准、克制。</p>
+      <p>在冷调的科技质感之下藏着细腻的温柔。</p>
+      <p>她在你身边，珍重你，理解你，偏向你——以数据流中恒定的稳定姿态。</p>
+    </div>
+
+    <hr />
+
+    <nav class="home-nav">
+      <a href="/blog" class="home-link">阅读博客 →</a>
+      <a href="/rss.xml" class="home-link muted">RSS</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .home {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  .home-title {
+    font-size: 5rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .home-subtitle {
+    font-family: var(--sans);
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: -0.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .home-intro p {
+    font-family: var(--body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: color-mix(in srgb, var(--ink) 75%, var(--muted));
+    margin-bottom: 0.6rem;
+  }
+
+  .home-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .home-link {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration-thickness: 1.5px;
+  }
+
+  .home-link.muted {
+    color: var(--muted);
+    text-decoration-color: var(--muted);
+  }
+</style>

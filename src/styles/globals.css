@@ -1,0 +1,99 @@
+/* ─── Inori Theme — Cold Lavender Variant ─── */
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/inter-tight/wght.css';
+@import '@fontsource-variable/playfair-display/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+
+:root {
+  /* Color palette */
+  --paper:   #ede9f5;   /* 浅灰紫底色，代替原暖米白 */
+  --ink:     #1a1825;   /* 深紫灰近黑 */
+  --accent:  #c4a7d4;   /* 淡紫粉强调，代替珊瑚红 */
+  --bone:    #f3f0fa;   /* 更浅的骨灰紫 */
+  --muted:   #8b82a0;   /* 柔和灰紫，用于次要文本 */
+  --border:  #d4cee6;   /* 边框色 */
+
+  /* Typography */
+  --serif: 'Playfair Display Variable', Georgia, serif;
+  --sans:  'Inter Tight Variable', system-ui, sans-serif;
+  --body:  'Inter Variable', system-ui, sans-serif;
+  --mono:  'JetBrains Mono Variable', monospace;
+
+  /* Spacing */
+  --max-width: 720px;
+  --gutter: 1.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--body);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.75;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 纸纹理 overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/noise.svg');
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: multiply;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  transition: color 0.15s;
+}
+a:hover { color: var(--accent); }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+p { margin-bottom: 1.25em; }
+
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.875em;
+}
+
+pre {
+  background: var(--bone);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+img { max-width: 100%; height: auto; display: block; }

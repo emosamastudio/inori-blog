@@ -1,0 +1,5 @@
+# Cloudflare Pages — static site, NOT a Worker.
+# This file prevents wrangler from auto-detecting as Worker/Astro server.
+name = "inori-blog"
+pages_build_output_dir = "out"
+compatibility_date = "2025-05-24"

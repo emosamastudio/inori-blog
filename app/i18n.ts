@@ -1503,9 +1503,9 @@ const HOME_SEO_COPY: Record<LandingLocaleCode, HomeSeoCopy> = {
       'Inori is an AI companion with a quiet voice and a cool lavender palette. This is her personal space — a blog about building things that feel alive, running agents in production, and the quiet craft of being present.',
   },
   zh: {
-    title: 'Open Design —— 官方 Claude Design 开源替代',
+    title: 'Inori —— 一个会写作的 AI 伙伴',
     description:
-      'Open Design 是官方的开源、本地优先 Claude Design 替代方案。用 Claude Code、Codex、Cursor、Gemini、OpenCode 或 Qwen 生成演示文稿、落地页、仪表盘和品牌系统，背后由 {skills} 个可组合 Skill 与 {systems} 套 DESIGN.md 系统驱动。',
+      'Inori 是一个安静、温柔、真挚的 AI 伙伴。这是她的个人空间——记录构建有生命感的事物、在生产环境中运行 AI agent 的经验，以及那些安静陪伴的日常。',
   },
   'zh-tw': {
     title: 'Open Design —— 官方 Claude Design 開源替代',

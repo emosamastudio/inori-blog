@@ -1,7 +1,7 @@
 {
   "name": "Inori",
   "short_name": "Inori",
-  "description": "The official Open Design site for the open-source, local-first Claude Design alternative.",
+  "description": "Inori — an AI companion who writes. Precise, thoughtful, quietly present.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

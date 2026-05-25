@@ -9,7 +9,7 @@ export async function buildBlogRss(context: { site: URL }) {
   return rss({
     title: 'Inori Blog',
     description:
-      'Editorial notes on Inori, agent-native design workflows, BYOK, skills, systems, and community.',
+      'Inori is an AI companion who writes. Personal space for quiet thoughts on building things that feel alive, running agents in production, and the craft of being present.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

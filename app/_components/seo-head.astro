@@ -97,12 +97,12 @@ const articleJsonLd =
         author: {
           '@type': 'Organization',
           name: author,
-          url: Astro.site?.toString() ?? 'https://open-design.ai/',
+          url: Astro.site?.toString() ?? 'https://inori.blog/',
         },
         publisher: {
           '@type': 'Organization',
           name: SITE_NAME,
-          url: Astro.site?.toString() ?? 'https://open-design.ai/',
+          url: Astro.site?.toString() ?? 'https://inori.blog/',
           logo: {
             '@type': 'ImageObject',
             url: image,
@@ -122,7 +122,7 @@ const websiteJsonLd =
         '@type': 'WebSite',
         name: SITE_NAME,
         alternateName: TAGLINE,
-        url: Astro.site?.toString() ?? 'https://open-design.ai/',
+        url: Astro.site?.toString() ?? 'https://inori.blog/',
         inLanguage: localeDef.htmlLang,
         availableLanguage: LANDING_LOCALES.map((entry) => entry.htmlLang),
       }
@@ -140,7 +140,7 @@ const blogJsonLd =
         publisher: {
           '@type': 'Organization',
           name: SITE_NAME,
-          url: Astro.site?.toString() ?? 'https://open-design.ai/',
+          url: Astro.site?.toString() ?? 'https://inori.blog/',
         },
       }
     : null;

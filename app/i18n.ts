@@ -5347,19 +5347,30 @@ export function getHomeFaq(
 }
 
 export function localePath(locale: LandingLocaleCode, pathname = '/'): string {
-  // Inori: single-locale (en). No locale prefix in URLs.
   const { pathname: basePathname } = stripLocaleFromPath(pathname);
   const normalized = basePathname.startsWith('/') ? basePathname : `/${basePathname}`;
-  return normalized;
+  if (locale === DEFAULT_LOCALE) return normalized;
+  if (normalized === '/') return `/${locale}/`;
+  return `/${locale}${normalized}`;
 }
 
 export function stripLocaleFromPath(pathname = '/'): {
   locale: LandingLocaleCode;
   pathname: string;
 } {
-  // Inori: single-locale (en). No locale prefix in URLs.
   const [rawPath = '/', suffix = ''] = pathname.split(/(?=[?#])/);
   const normalized = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
+  const segments = normalized.split('/').filter(Boolean);
+  const first = segments[0];
+
+  if (isLandingLocale(first)) {
+    const rest = segments.slice(1).join('/');
+    return {
+      locale: first,
+      pathname: `/${rest}${rest ? '/' : ''}${suffix}`,
+    };
+  }
+
   return { locale: DEFAULT_LOCALE, pathname: `${normalized}${suffix}` };
 }
 

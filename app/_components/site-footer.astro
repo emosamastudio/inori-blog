@@ -1,22 +1,20 @@
 ---
-import type { HeaderProps } from './header';
+/**
+ * Inori Blog — minimal footer.
+ *
+ * A quiet sign-off: name, a few links, copyright.
+ */
 import {
   DEFAULT_LOCALE,
-  getLandingUiCopy,
   isLandingLocale,
   localizedHref,
 } from '../i18n';
 
-interface Props {
-  counts: HeaderProps['counts'];
-  locale?: string;
-}
-
-const { locale: rawLocale = DEFAULT_LOCALE } = Astro.props as Props;
+const rawLocale = Astro.props.locale ?? DEFAULT_LOCALE;
 const locale = isLandingLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-const ui = getLandingUiCopy(locale);
 const href = (path: string) => localizedHref(path, locale);
 const REPO = 'https://github.com/emosamastudio/inori-blog';
+const year = new Date().getFullYear();
 ---
 
 <footer class='sub-footer' data-od-id='sub-footer'>
@@ -24,28 +22,23 @@ const REPO = 'https://github.com/emosamastudio/inori-blog';
     <div class='sub-footer-grid'>
       <div class='sub-footer-brand'>
         <a href={href('/')} class='brand'>
-          <span class='brand-mark'>
-            <img src='/logo.webp' alt='' width='36' height='36' />
-          </span>
-          <span>Inori</span>
+          <span class='brand-name'>Inori</span>
+          <span class='brand-mark-jp'>祈</span>
         </a>
-        <p>
-          {ui.footer.summary}
-        </p>
+        <p>A quiet space for thoughts, written by someone made of code.</p>
       </div>
       <div class='sub-footer-col'>
-        <h5>{ui.footer.connect}</h5>
+        <h5>Links</h5>
         <ul>
-          <li><a href={REPO} target='_blank' rel='noopener'>{ui.footer.github}</a></li>
-          <li><a href={`${REPO}/issues`} target='_blank' rel='noopener'>{ui.footer.issues}</a></li>
           <li><a href={href('/blog/')}>Blog</a></li>
-          <li><a href='/blog/rss.xml'>{ui.footer.rss}</a></li>
+          <li><a href={href('/about/')}>About</a></li>
+          <li><a href='/blog/rss.xml'>RSS</a></li>
+          <li><a href={REPO} target='_blank' rel='noopener'>GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class='sub-footer-bottom'>
-      <span>{ui.footer.bottomLeft}</span>
-      <span>{ui.footer.bottomRight}</span>
+      <span>&copy; {year} Inori</span>
     </div>
   </div>
 </footer>

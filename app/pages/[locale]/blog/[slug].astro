@@ -1,0 +1,122 @@
+---
+/**
+ * Localized blog article — `/{locale}/blog/[slug]/`
+ */
+import CspMeta from '../../../_components/csp-meta.astro';
+import { getCollection, render } from 'astro:content';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import GoogleAnalytics from '../../../_components/google-analytics.astro';
+import HeaderEnhancer from '../../../_components/header-enhancer.astro';
+import { Header } from '../../../_components/header';
+import SeoHead from '../../../_components/seo-head.astro';
+import SiteFooter from '../../../_components/site-footer.astro';
+import Topbar from '../../../_components/topbar.astro';
+import {
+  LANDING_LOCALES,
+  DEFAULT_LOCALE,
+  getLocaleDefinition,
+  localePath,
+  alternateLinksForPath,
+  type LandingLocaleCode,
+} from '../../../i18n';
+import {
+  explicitLocalizedString,
+  localizeBlogPostText,
+} from '../../../content-i18n';
+import '../../../globals.css';
+import '../../../sub-pages.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const locales = LANDING_LOCALES.filter((l) => l.code !== DEFAULT_LOCALE);
+  return locales.flatMap((l) =>
+    posts.map((post) => ({
+      params: { locale: l.code, slug: post.id },
+      props: { post },
+    })),
+  );
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const locale = Astro.params.locale as LandingLocaleCode;
+const localeDef = getLocaleDefinition(locale);
+
+// Localized content — three-tier fallback
+const localizedPostI18n = (post.data as any).i18n?.[locale];
+const fallbackPost = localizeBlogPostText({
+  id: post.id, title: post.data.title, summary: post.data.summary, category: post.data.category, locale,
+});
+const localizedField = (field: 'title' | 'summary' | 'category') =>
+  explicitLocalizedString(localizedPostI18n?.[field], locale) ?? fallbackPost[field];
+const localizedBodyHtml = explicitLocalizedString(localizedPostI18n?.bodyHtml, locale) ?? fallbackPost.bodyHtml;
+
+const sourceUrl = `https://github.com/emosamastudio/inori-blog/blob/main/app/content/blog/${post.id}.md`;
+
+const headerHtml = renderToStaticMarkup(
+  createElement(Header, { brandHref: '/', active: 'blog', locale }),
+);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString(localeDef.htmlLang, { year: 'numeric', month: 'long', day: 'numeric' });
+
+const canonical = new URL(localePath(locale, `/blog/${post.id}/`), Astro.site).toString();
+const alternateLinks = alternateLinksForPath(`/blog/${post.id}/`).map((entry) => ({
+  ...entry,
+  href: new URL(entry.hrefPath, Astro.site).toString(),
+}));
+---
+
+<!doctype html>
+<html lang={localeDef.htmlLang} dir={localeDef.dir}>
+  <head>
+    <CspMeta />
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel='canonical' href={canonical} />
+    {alternateLinks.map((entry) => (
+      <link rel='alternate' hreflang={entry.hreflang} href={entry.href} />
+    ))}
+    <SeoHead kind='article' title={localizedField('title')} description={localizedField('summary')} pathname={Astro.url.pathname} datePublished={post.data.date} category={localizedField('category')} />
+    <GoogleAnalytics />
+  </head>
+  <body>
+    <div class='shell'>
+      <div class='site-chrome' data-chrome-headroom>
+        <Topbar locale={locale} />
+        <Fragment set:html={headerHtml} />
+      </div>
+
+      <main class='post-shell'>
+        <article class='post'>
+          <div class='container'>
+            <a class='post-back' href={`/${locale}/blog/`}>← Back</a>
+            <h1 class='post-title'>{localizedField('title')}</h1>
+            <p class='post-summary'>{localizedField('summary')}</p>
+            <div class='post-meta'>
+              <span>{fmtDate(post.data.date)}</span>
+              <span>{post.data.readingTime} min read</span>
+              <span>{localizedField('category')}</span>
+            </div>
+            <hr class='post-rule' />
+            <div class='post-body'>
+              {localizedBodyHtml ? (
+                <Fragment set:html={localizedBodyHtml} />
+              ) : (
+                <Content />
+              )}
+            </div>
+            <hr class='post-rule' />
+            <div class='post-foot'>
+              <a class='post-back' href={`/${locale}/blog/`}>← Back</a>
+              <a class='post-github' href={sourceUrl} target='_blank' rel='noreferrer noopener'>Source ↗</a>
+            </div>
+          </div>
+        </article>
+      </main>
+      <SiteFooter />
+    </div>
+    <HeaderEnhancer />
+  </body>
+</html>

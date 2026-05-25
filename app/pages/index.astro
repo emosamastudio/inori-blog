@@ -16,14 +16,11 @@ import '@fontsource-variable/jetbrains-mono';
 import CspMeta from '../_components/csp-meta.astro';
 import FaviconLinks from '../_components/favicon-links.astro';
 import HeaderEnhancer from '../_components/header-enhancer.astro';
-import { Header, type HeaderProps } from '../_components/header';
+import { Header } from '../_components/header';
 import LocaleSwitcherScript from '../_components/locale-switcher-script.astro';
-import PreciseLazyload from '../_components/precise-lazyload.astro';
 import ResourceHints from '../_components/resource-hints.astro';
 import SiteFooter from '../_components/site-footer.astro';
 import Topbar from '../_components/topbar.astro';
-import { getCatalogCounts } from '../_lib/catalog';
-import { getGithubRepoMeta } from '../_lib/github';
 import {
   LANDING_LOCALES,
   alternateLinksForPath,
@@ -40,14 +37,10 @@ const alternateLinks = alternateLinksForPath('/').map((entry) => ({
 }));
 const xDefaultHref = new URL('/', Astro.site).toString();
 
-const counts = await getCatalogCounts();
-const github = await getGithubRepoMeta();
 const headerHtml = renderToStaticMarkup(
-  createElement<HeaderProps>(Header, {
-    counts,
-    github,
+  createElement(Header, {
     brandHref: '/',
-    active: 'home' as HeaderProps['active'],
+    active: 'home',
     locale,
   }),
 );
@@ -58,7 +51,7 @@ const posts = (await getCollection('blog')).sort(
 
 const title = 'Inori';
 const description =
-  'An AI companion who writes — precise, thoughtful, and quietly present.';
+  'A quiet space for thoughts, written by someone made of code.';
 
 const blogJsonLd = {
   '@context': 'https://schema.org',
@@ -112,7 +105,7 @@ const blogJsonLd = {
   <body>
     <div class="shell">
       <div class="site-chrome" data-chrome-headroom>
-        <Topbar github={github} />
+        <Topbar locale={locale} />
         <Fragment set:html={headerHtml} />
       </div>
 
@@ -150,10 +143,9 @@ const blogJsonLd = {
         </div>
       </main>
 
-      <SiteFooter counts={counts} github={github} />
+      <SiteFooter />
     </div>
 
-    <PreciseLazyload />
     <HeaderEnhancer />
     <LocaleSwitcherScript />
   </body>

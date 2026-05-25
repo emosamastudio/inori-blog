@@ -938,7 +938,7 @@ type HomeFaqTemplate = {
 const COMMON_COPY: Record<LandingLocaleCode, CommonCopy> = {
   en: {
     topbar: {
-      issue: 'Vol. 01 / Issue Nº 26',
+      issue: 'Vol. 01 / Issue Nº 01',
       filedUnder: 'Filed under',
       category: 'Writing · Code',
       madeOnEarth: 'Made on Earth',

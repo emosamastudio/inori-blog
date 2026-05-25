@@ -1,7 +1,7 @@
 import { EXTRA_LOCALIZED_HOME_BODY_COPY } from './home-page-i18n';
 import { EXTRA_LOCALIZED_LANDING_UI_COPY } from './landing-ui-i18n';
 
-export const DEFAULT_LOCALE = 'en';
+export const DEFAULT_LOCALE = 'zh';
 
 export const LANDING_LOCALES = [
   {

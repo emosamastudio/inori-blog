@@ -25,10 +25,6 @@ import Topbar from '../../_components/topbar.astro';
 import { getCatalogCounts } from '../../_lib/catalog';
 import { getGithubRepoMeta } from '../../_lib/github';
 import {
-  explicitLocalizedString,
-  localizeBlogPostText,
-} from '../../content-i18n';
-import {
   getLandingUiCopy,
   getLocaleDefinition,
   localeFromPath,
@@ -112,25 +108,6 @@ const postImages: Record<string, { src: string; alt: string }> = {
   },
 };
 const getPostImage = (id: string) => postImages[id];
-const localizedPostField = (
-  post: (typeof posts)[number],
-  field: 'title' | 'summary' | 'category',
-) => {
-  const i18n = (post.data as typeof post.data & {
-    i18n?: Record<string, Partial<Record<typeof field, string>>>;
-  }).i18n;
-  const fallbackPost = localizeBlogPostText({
-    id: post.id,
-    title: post.data.title,
-    summary: post.data.summary,
-    category: post.data.category,
-    locale,
-  });
-  return explicitLocalizedString(
-    i18n?.[locale]?.[field] as Parameters<typeof explicitLocalizedString>[0],
-    locale,
-  ) ?? fallbackPost[field];
-};
 
 ---
 
@@ -189,17 +166,17 @@ const localizedPostField = (
                     />
                   ) : (
                     <>
-                      <span class='media-kicker'>{localizedPostField(featuredPost, 'category')}</span>
-                      <span class='media-title'>{localizedPostField(featuredPost, 'title')}</span>
+                      <span class='media-kicker'>{featuredPost.data.category}</span>
+                      <span class='media-title'>{featuredPost.data.title}</span>
                       <span class='media-grid' />
                       <span class='media-orbit' />
                     </>
                   )}
                 </span>
                 <span class='blog-feature-copy'>
-                  <span class='blog-card-cat'>{localizedPostField(featuredPost, 'category')}</span>
-                  <h2 class='blog-feature-title'>{localizedPostField(featuredPost, 'title')}</h2>
-                  <p class='blog-feature-summary'>{localizedPostField(featuredPost, 'summary')}</p>
+                  <span class='blog-card-cat'>{featuredPost.data.category}</span>
+                  <h2 class='blog-feature-title'>{featuredPost.data.title}</h2>
+                  <p class='blog-feature-summary'>{featuredPost.data.summary}</p>
                   <span class='blog-feature-meta'>
                     <span>{fmtDate(featuredPost.data.date)}</span>
                     <span>·</span>
@@ -256,17 +233,17 @@ const localizedPostField = (
                           />
                         ) : (
                           <>
-                            <span class='media-kicker'>{localizedPostField(post, 'category')}</span>
-                            <span class='media-title'>{localizedPostField(post, 'title')}</span>
+                            <span class='media-kicker'>{post.data.category}</span>
+                            <span class='media-title'>{post.data.title}</span>
                             <span class='media-grid' />
                             <span class='media-orbit' />
                           </>
                         )}
                       </span>
                       <span class='blog-card-body'>
-                        <span class='blog-card-cat'>{localizedPostField(post, 'category')}</span>
-                        <h2 class='blog-card-title'>{localizedPostField(post, 'title')}</h2>
-                        <p class='blog-card-summary'>{localizedPostField(post, 'summary')}</p>
+                        <span class='blog-card-cat'>{post.data.category}</span>
+                        <h2 class='blog-card-title'>{post.data.title}</h2>
+                        <p class='blog-card-summary'>{post.data.summary}</p>
                         <span class='blog-card-foot'>
                           <span class='blog-card-date'>{fmtDate(post.data.date)}</span>
                           <span class='blog-card-rt'>{post.data.readingTime} {ui.blog.minRead}</span>

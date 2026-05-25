@@ -104,17 +104,11 @@ const script = `
   };
 
   const autoAdapt = () => {
+    // Single-locale site (en). Never auto-redirect from browser detection.
+    // Only follow an explicit saved preference if the user previously chose
+    // a locale — but since we don't generate non-en routes, skip redirects
+    // entirely and just persist the saved choice for when routes are added.
     if (currentFromPath() !== DEFAULT_LOCALE) return;
-    let saved = null;
-    try {
-      saved = normalizeLocale(window.localStorage.getItem(STORAGE_KEY) ?? '');
-    } catch {}
-    const detected =
-      saved ??
-      (Array.isArray(navigator.languages)
-        ? navigator.languages.map(normalizeLocale).find(Boolean)
-        : normalizeLocale(navigator.language));
-    if (detected && detected !== DEFAULT_LOCALE) selectLocale(detected, false);
   };
 
   bindSwitchers();

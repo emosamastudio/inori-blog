@@ -2,7 +2,6 @@
 import type { HeaderProps } from './header';
 import {
   DEFAULT_LOCALE,
-  getCommonCopy,
   getLandingUiCopy,
   isLandingLocale,
   localizedHref,
@@ -15,7 +14,6 @@ interface Props {
 
 const { locale: rawLocale = DEFAULT_LOCALE } = Astro.props as Props;
 const locale = isLandingLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-const copy = getCommonCopy(locale).header;
 const ui = getLandingUiCopy(locale);
 const href = (path: string) => localizedHref(path, locale);
 const REPO = 'https://github.com/emosamastudio/inori-blog';
@@ -40,9 +38,8 @@ const REPO = 'https://github.com/emosamastudio/inori-blog';
         <ul>
           <li><a href={REPO} target='_blank' rel='noopener'>{ui.footer.github}</a></li>
           <li><a href={`${REPO}/issues`} target='_blank' rel='noopener'>{ui.footer.issues}</a></li>
-          <li><a href={`${REPO}/releases`} target='_blank' rel='noopener'>{ui.footer.releases}</a></li>
+          <li><a href={href('/blog/')}>Blog</a></li>
           <li><a href='/blog/rss.xml'>{ui.footer.rss}</a></li>
-          <li><a href={href('/#contact')}>{copy.nav.contact}</a></li>
         </ul>
       </div>
     </div>

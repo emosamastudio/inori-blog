@@ -382,7 +382,7 @@ export default function Page({
                 width={1280}
                 height={1600}
                 alt=''
-                fetchPriority='high'
+                fetchpriority='high'
                 decoding='async'
               />
               <div className='index'>

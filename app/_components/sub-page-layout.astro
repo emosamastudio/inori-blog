@@ -18,6 +18,7 @@ import '../globals.css';
 import '../sub-pages.css';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import CspMeta from './csp-meta.astro';
 import FaviconLinks from './favicon-links.astro';
 import GoogleAnalytics from './google-analytics.astro';
 import ResourceHints from './resource-hints.astro';
@@ -65,6 +66,7 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 <!doctype html>
 <html lang={localeDef.htmlLang} dir={localeDef.dir}>
   <head>
+    <CspMeta />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e8e3f0" />

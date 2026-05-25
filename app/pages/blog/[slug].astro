@@ -6,6 +6,7 @@
  * post with a narrow editorial body, magazine-style masthead, and a back
  * link to the index. Reuses landing CSS variables and the shared header.
  */
+import CspMeta from '../../_components/csp-meta.astro';
 import { getCollection, render } from 'astro:content';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -132,6 +133,7 @@ const fmtDate = (d: Date) =>
 <!doctype html>
 <html lang={localeDef.htmlLang} dir={localeDef.dir}>
   <head>
+    <CspMeta />
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <SeoHead

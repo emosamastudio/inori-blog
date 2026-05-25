@@ -10,6 +10,7 @@
  * `app/content.config.ts`. Sorted by date descending. A tiny inline script
  * powers category filtering via `?category=...`.
  */
+import CspMeta from '../../_components/csp-meta.astro';
 import { getCollection } from 'astro:content';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -136,6 +137,7 @@ const localizedPostField = (
 <!doctype html>
 <html lang={localeDef.htmlLang} dir={localeDef.dir}>
   <head>
+    <CspMeta />
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <SeoHead

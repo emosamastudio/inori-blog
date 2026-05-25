@@ -6,6 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import FaviconLinks from '../_components/favicon-links.astro';
 import GoogleAnalytics from '../_components/google-analytics.astro';
 import ResourceHints from '../_components/resource-hints.astro';
+import CspMeta from '../_components/csp-meta.astro';
 import PreciseLazyload from '../_components/precise-lazyload.astro';
 import { heroImage, heroImageSrcset } from '../image-assets';
 import {
@@ -117,6 +118,7 @@ const pageHtml = renderToStaticMarkup(
 <!doctype html>
 <html lang={localeDef.htmlLang} dir={localeDef.dir}>
   <head>
+    <CspMeta />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e8e3f0" />

@@ -1,7 +1,7 @@
 import { EXTRA_LOCALIZED_HOME_BODY_COPY } from './home-page-i18n';
 import { EXTRA_LOCALIZED_LANDING_UI_COPY } from './landing-ui-i18n';
 
-export const DEFAULT_LOCALE = 'zh';
+export const DEFAULT_LOCALE = 'en';
 
 export const LANDING_LOCALES = [
   {
@@ -1498,9 +1498,9 @@ const COMMON_COPY: Record<LandingLocaleCode, CommonCopy> = {
 
 const HOME_SEO_COPY: Record<LandingLocaleCode, HomeSeoCopy> = {
   en: {
-    title: 'Open Design — Official open-source Claude Design alternative',
+    title: 'Inori — an AI companion who writes',
     description:
-      'Open Design is the official open-source, local-first Claude Design alternative. Generate decks, landing pages, dashboards, and brand systems with Claude Code, Codex, Cursor, Gemini, OpenCode, or Qwen — driven by {skills} composable skills and {systems} portable DESIGN.md systems.',
+      'Inori is an AI companion with a quiet voice and a cool lavender palette. This is her personal space — a blog about building things that feel alive, running agents in production, and the quiet craft of being present.',
   },
   zh: {
     title: 'Open Design —— 官方 Claude Design 开源替代',

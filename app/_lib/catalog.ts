@@ -796,49 +796,19 @@ function tallyKey(values: Iterable<string | undefined>): Record<string, number> 
 }
 
 export async function getCatalogCounts(
-  locale: LandingLocaleCode = DEFAULT_LOCALE,
+  _locale: LandingLocaleCode = DEFAULT_LOCALE,
 ): Promise<CatalogCounts> {
-  if (!SHOULD_CACHE_CATALOG) {
-    const [skills, systems, templates, craft] = await Promise.all([
-      getSkillRecords(locale),
-      getSystemRecords(locale),
-      getTemplateRecords(locale),
-      getCraftRecords(locale),
-    ]);
-    return {
-      skills: skills.length,
-      systems: systems.length,
-      templates: templates.length,
-      craft: craft.length,
-      byMode: tallyKey(skills.map((s) => s.mode)),
-      byPlatform: tallyKey(skills.map((s) => s.platform)),
-    };
-  }
-
-  const cached = catalogCountsCache.get(locale);
-  if (cached) {
-    return cached;
-  }
-
-  const promise = (async () => {
-    const [skills, systems, templates, craft] = await Promise.all([
-      getSkillRecords(locale),
-      getSystemRecords(locale),
-      getTemplateRecords(locale),
-      getCraftRecords(locale),
-    ]);
-    return {
-      skills: skills.length,
-      systems: systems.length,
-      templates: templates.length,
-      craft: craft.length,
-      byMode: tallyKey(skills.map((s) => s.mode)),
-      byPlatform: tallyKey(skills.map((s) => s.platform)),
-    };
-  })();
-
-  catalogCountsCache.set(locale, promise);
-  return promise;
+  // Inori blog: the skills/systems/templates/craft catalogs from
+  // Open Design have been removed. Return zeros so the homepage
+  // and nav badges render without build errors.
+  return {
+    skills: 0,
+    systems: 0,
+    templates: 0,
+    craft: 0,
+    byMode: {},
+    byPlatform: {},
+  };
 }
 
 // ---------------------------------------------------------------------------

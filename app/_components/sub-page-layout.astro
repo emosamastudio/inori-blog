@@ -23,7 +23,6 @@ import GoogleAnalytics from './google-analytics.astro';
 import ResourceHints from './resource-hints.astro';
 import HeaderEnhancer from './header-enhancer.astro';
 import { Header, type HeaderProps } from './header';
-import LocaleSwitcherScript from './locale-switcher-script.astro';
 import PreciseLazyload from './precise-lazyload.astro';
 import SiteFooter from './site-footer.astro';
 import Topbar from './topbar.astro';
@@ -119,7 +118,6 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     </div>
 
     <HeaderEnhancer />
-    <LocaleSwitcherScript />
     <PreciseLazyload />
   </body>
 </html>

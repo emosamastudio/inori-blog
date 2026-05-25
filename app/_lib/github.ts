@@ -5,8 +5,8 @@ export interface GithubRepoMeta {
 
 const REPO_API = 'https://api.github.com/repos/emosamastudio/inori-blog';
 const FALLBACK_META: GithubRepoMeta = {
-  starsLabel: '40K+',
-  versionLabel: 'v0.3.0',
+  starsLabel: '—',
+  versionLabel: 'v0.1.0',
 };
 
 let repoMetaPromise: Promise<GithubRepoMeta> | null = null;

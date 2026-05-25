@@ -6,7 +6,7 @@
  * `app/pages/index.astro` enhances it with a tiny inline GitHub fetch so
  * the browser never downloads React.
  *
- *   GET https://api.github.com/repos/nexu-io/open-design/contributors
+ *   GET https://api.github.com/repos/emosamastudio/inori-blog/contributors
  *
  * Each entry becomes a `<a class='wire-item is-link'>` linking straight
  * to the contributor's GitHub profile. We:

@@ -17,7 +17,6 @@ import GoogleAnalytics from '../../_components/google-analytics.astro';
 import HeaderEnhancer from '../../_components/header-enhancer.astro';
 import { Header, type HeaderProps } from '../../_components/header';
 import LazyImg from '../../_components/lazy-img.astro';
-import LocaleSwitcherScript from '../../_components/locale-switcher-script.astro';
 import PreciseLazyload from '../../_components/precise-lazyload.astro';
 import SeoHead from '../../_components/seo-head.astro';
 import SiteFooter from '../../_components/site-footer.astro';
@@ -45,7 +44,7 @@ const href = (path: string) => localizedHref(path, locale);
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
-const FEATURED_POST_ID = 'open-source-alternative-to-claude-design';
+const FEATURED_POST_ID = 'hello-world-i-am-inori';
 const featuredPost = posts.find((post) => post.id === FEATURED_POST_ID) ?? posts[0];
 const cardPosts = posts.filter((post) => post.id !== featuredPost?.id);
 
@@ -316,7 +315,6 @@ const localizedPostField = (
       })();
     </script>
     <HeaderEnhancer />
-    <LocaleSwitcherScript />
     <PreciseLazyload />
 
     <style>
@@ -370,14 +368,14 @@ const localizedPostField = (
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--ink-mute);
-        background: rgba(247, 241, 222, 0.38);
+        background: rgba(232, 227, 240,0.38);
         text-decoration: none;
         transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
       }
       .blog-chip:hover {
         color: var(--ink);
         border-color: rgba(21, 19, 28, 0.42);
-        background: rgba(247, 241, 222, 0.72);
+        background: rgba(232, 227, 240,0.72);
       }
       .blog-chip.is-active {
         color: var(--paper);
@@ -455,7 +453,7 @@ const localizedPostField = (
         flex-direction: column;
         min-height: 100%;
         border: 1px solid var(--line);
-        background: rgba(247, 241, 222, 0.46);
+        background: rgba(232, 227, 240,0.46);
         color: var(--ink);
         text-decoration: none;
         overflow: hidden;
@@ -529,9 +527,9 @@ const localizedPostField = (
         overflow: hidden;
         border-bottom: 1px solid var(--line);
         background:
-          radial-gradient(circle at 20% 20%, rgba(237, 106, 90, 0.18), transparent 30%),
+          radial-gradient(circle at 20% 20%, rgba(196, 167, 212, 0.18), transparent 30%),
           radial-gradient(circle at 80% 40%, rgba(21, 19, 28, 0.12), transparent 28%),
-          linear-gradient(135deg, rgba(239, 231, 210, 0.9), rgba(247, 241, 222, 0.58));
+          linear-gradient(135deg, rgba(225, 219, 235,0.9), rgba(232, 227, 240,0.58));
       }
       .media-panel.has-image {
         background: var(--bone);
@@ -553,7 +551,7 @@ const localizedPostField = (
         z-index: 1;
         background-image: linear-gradient(
           180deg,
-          rgba(247, 241, 222, 0.08),
+          rgba(232, 227, 240,0.08),
           rgba(21, 19, 28, 0.08)
         );
         pointer-events: none;
@@ -579,7 +577,7 @@ const localizedPostField = (
         width: 72px;
         height: 72px;
         border: 1px solid rgba(21, 19, 28, 0.45);
-        box-shadow: -48px -38px 0 -22px rgba(237, 106, 90, 0.82);
+        box-shadow: -48px -38px 0 -22px rgba(196, 167, 212, 0.82);
       }
       .media-panel-large {
         min-height: 252px;
@@ -628,7 +626,7 @@ const localizedPostField = (
         top: 72px;
         width: 150px;
         height: 150px;
-        border: 28px solid rgba(237, 106, 90, 0.28);
+        border: 28px solid rgba(196, 167, 212, 0.28);
         border-radius: 50%;
       }
       .blog-empty {

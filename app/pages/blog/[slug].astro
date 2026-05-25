@@ -12,7 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import GoogleAnalytics from '../../_components/google-analytics.astro';
 import HeaderEnhancer from '../../_components/header-enhancer.astro';
 import { Header, type HeaderProps } from '../../_components/header';
-import LocaleSwitcherScript from '../../_components/locale-switcher-script.astro';
+import PreciseLazyload from '../../_components/precise-lazyload.astro';
 import SeoHead from '../../_components/seo-head.astro';
 import SiteFooter from '../../_components/site-footer.astro';
 import Topbar from '../../_components/topbar.astro';
@@ -65,7 +65,6 @@ const localizedBodyHtml = explicitLocalizedString(
   localizedPostI18n?.bodyHtml as Parameters<typeof explicitLocalizedString>[0],
   locale,
 ) ?? fallbackPost.bodyHtml;
-const DISCORD = 'https://discord.gg/9ptkbbqRu';
 const sourceUrl = `https://github.com/emosamastudio/inori-blog/blob/main/app/content/blog/${post.id}.md`;
 const category = post.data.category.toLowerCase();
 const bottomCta =
@@ -193,8 +192,6 @@ const fmtDate = (d: Date) =>
               >
                 {bottomCta.label}
               </a>
-              <a class='btn btn-ghost' href={DISCORD} target='_blank' rel='noreferrer noopener'>
-                {ui.blog.joinDiscord}
               </a>
             </div>
           </aside>
@@ -219,7 +216,7 @@ const fmtDate = (d: Date) =>
     </div>
 
     <HeaderEnhancer />
-    <LocaleSwitcherScript />
+    <PreciseLazyload />
 
     <style>
       .post-shell {

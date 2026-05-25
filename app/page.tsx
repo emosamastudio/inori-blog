@@ -311,16 +311,6 @@ export default function Page({
         <section className='hero' id='top' data-od-id='hero'>
           <div className='container hero-grid'>
             <div className='hero-copy'>
-              <a
-                className='hero-discord-pill'
-                href={DISCORD}
-                aria-label={home.hero.discordAria}
-                {...ext}
-                data-reveal
-              >
-                <span aria-hidden='true'>●</span>
-                {home.hero.joinDiscord}
-              </a>
               <span className='label' data-reveal>
                 {home.hero.label} <span className='ix'>· {home.hero.issue}</span>
               </span>
@@ -453,20 +443,14 @@ export default function Page({
               </span>
               <ul className='official-strip-list'>
                 <li>
-                  <a href={href('/official/')}>
+                  <a href={REPO} {...ext}>
                     <span className='label'>{home.official.items[0].label}</span>
                     <span className='value'>{home.official.items[0].value}</span>
                   </a>
                 </li>
                 <li>
-                  <a href={REPO} {...ext}>
-                    <span className='label'>{home.official.items[1].label}</span>
-                    <span className='value'>{home.official.items[1].value}</span>
-                  </a>
-                </li>
-                <li>
                   <a href={REPO_RELEASES} {...ext}>
-                    <span className='label'>{home.official.items[2].label}</span>
+                    <span className='label'>{home.official.items[1].label}</span>
                     <span className='value' data-github-version>
                       {github.versionLabel}
                     </span>
@@ -474,20 +458,20 @@ export default function Page({
                 </li>
                 <li>
                   <a href={REPO_RELEASES} {...ext}>
+                    <span className='label'>{home.official.items[2].label}</span>
+                    <span className='value'>{home.official.items[2].value}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={REPO_DOCS} {...ext}>
                     <span className='label'>{home.official.items[3].label}</span>
                     <span className='value'>{home.official.items[3].value}</span>
                   </a>
                 </li>
                 <li>
-                  <a href={REPO_DOCS} {...ext}>
+                  <a href={DISCORD} {...ext}>
                     <span className='label'>{home.official.items[4].label}</span>
                     <span className='value'>{home.official.items[4].value}</span>
-                  </a>
-                </li>
-                <li>
-                  <a href={DISCORD} {...ext}>
-                    <span className='label'>{home.official.items[5].label}</span>
-                    <span className='value'>{home.official.items[5].value}</span>
                   </a>
                 </li>
               </ul>
@@ -1384,36 +1368,6 @@ export default function Page({
                   <li>
                     <a href={DISCORD} {...ext}>
                       {home.footer.connectLinks[4]}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className='foot-col'>
-                <h5>{home.footer.columns.openDesign}</h5>
-                <ul>
-                  <li>
-                    <a href={href('/official/')}>
-                      {home.footer.openDesignLinks.official}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={href('/quickstart/')}>
-                      {home.footer.openDesignLinks.quickstart}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={href('/agents/')}>
-                      {home.footer.openDesignLinks.agents}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={href('/compare/')}>
-                      {home.footer.openDesignLinks.compare}
-                    </a>
-                  </li>
-                  <li>
-                    <a href={href('/alternatives/claude-design/')}>
-                      {home.footer.openDesignLinks.alternative}
                     </a>
                   </li>
                 </ul>

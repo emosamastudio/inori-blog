@@ -6,7 +6,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import FaviconLinks from '../_components/favicon-links.astro';
 import GoogleAnalytics from '../_components/google-analytics.astro';
 import ResourceHints from '../_components/resource-hints.astro';
-import LocaleSwitcherScript from '../_components/locale-switcher-script.astro';
 import PreciseLazyload from '../_components/precise-lazyload.astro';
 import { heroImage, heroImageSrcset } from '../image-assets';
 import {
@@ -81,34 +80,17 @@ const organizationSchema = {
   // across sources. Listing the official site, GitHub repo, release
   // feed, README docs, and Discord here prevents capture sites from
   // splitting the brand entity.
-  sameAs: [REPO_URL, RELEASES_URL, DOCS_URL, DISCORD_URL, OFFICIAL_URL],
+  sameAs: [REPO_URL, OFFICIAL_URL],
 };
 
 const softwareSchema = {
-  '@type': 'SoftwareApplication',
-  '@id': `${origin}#software`,
+  '@type': 'Blog',
+  '@id': `${origin}#blog`,
   name: 'Inori',
   alternateName: ['Inori', '祈'],
   description,
   url: origin,
-  inLanguage: localeDef.htmlLang,
-  applicationCategory: 'DesignApplication',
-  operatingSystem: 'macOS, Windows, Linux',
-  license: 'https://www.apache.org/licenses/LICENSE-2.0',
-  softwareVersion: github.versionLabel,
-  downloadUrl: RELEASES_URL,
-  installUrl: `${origin}quickstart/`,
-  softwareHelp: { '@type': 'CreativeWork', url: DOCS_URL },
-  releaseNotes: RELEASES_URL,
-  codeRepository: REPO_URL,
-  discussionUrl: DISCORD_URL,
-  issueTracker: ISSUES_URL,
-  sameAs: [REPO_URL, RELEASES_URL, DOCS_URL, DISCORD_URL, OFFICIAL_URL, LICENSE_URL],
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-  },
+  inLanguage: 'en',
   publisher: { '@id': `${origin}#organization` },
 };
 
@@ -194,7 +176,6 @@ const pageHtml = renderToStaticMarkup(
   <body>
     <Fragment set:html={pageHtml} />
     <PreciseLazyload />
-    <LocaleSwitcherScript />
     <script is:inline>
       (() => {
         const formatStars = (count) => {

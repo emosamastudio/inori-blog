@@ -12,6 +12,142 @@ export const LANDING_LOCALES = [
     shortLabel: 'EN',
     dir: 'ltr',
   },
+  {
+    code: 'zh',
+    htmlLang: 'zh',
+    ogLocale: 'zh_CN',
+    label: '简体中文',
+    shortLabel: '简',
+    dir: 'ltr',
+  },
+  {
+    code: 'zh-tw',
+    htmlLang: 'zh-TW',
+    ogLocale: 'zh_TW',
+    label: '繁體中文',
+    shortLabel: '繁',
+    dir: 'ltr',
+  },
+  {
+    code: 'ja',
+    htmlLang: 'ja',
+    ogLocale: 'ja_JP',
+    label: '日本語',
+    shortLabel: '日',
+    dir: 'ltr',
+  },
+  {
+    code: 'ko',
+    htmlLang: 'ko',
+    ogLocale: 'ko_KR',
+    label: '한국어',
+    shortLabel: '한',
+    dir: 'ltr',
+  },
+  {
+    code: 'de',
+    htmlLang: 'de',
+    ogLocale: 'de_DE',
+    label: 'Deutsch',
+    shortLabel: 'DE',
+    dir: 'ltr',
+  },
+  {
+    code: 'fr',
+    htmlLang: 'fr',
+    ogLocale: 'fr_FR',
+    label: 'Français',
+    shortLabel: 'FR',
+    dir: 'ltr',
+  },
+  {
+    code: 'ru',
+    htmlLang: 'ru',
+    ogLocale: 'ru_RU',
+    label: 'Русский',
+    shortLabel: 'RU',
+    dir: 'ltr',
+  },
+  {
+    code: 'es',
+    htmlLang: 'es',
+    ogLocale: 'es_ES',
+    label: 'Español',
+    shortLabel: 'ES',
+    dir: 'ltr',
+  },
+  {
+    code: 'pt-br',
+    htmlLang: 'pt-BR',
+    ogLocale: 'pt_BR',
+    label: 'Português (BR)',
+    shortLabel: 'BR',
+    dir: 'ltr',
+  },
+  {
+    code: 'it',
+    htmlLang: 'it',
+    ogLocale: 'it_IT',
+    label: 'Italiano',
+    shortLabel: 'IT',
+    dir: 'ltr',
+  },
+  {
+    code: 'vi',
+    htmlLang: 'vi',
+    ogLocale: 'vi_VN',
+    label: 'Tiếng Việt',
+    shortLabel: 'VI',
+    dir: 'ltr',
+  },
+  {
+    code: 'pl',
+    htmlLang: 'pl',
+    ogLocale: 'pl_PL',
+    label: 'Polski',
+    shortLabel: 'PL',
+    dir: 'ltr',
+  },
+  {
+    code: 'id',
+    htmlLang: 'id',
+    ogLocale: 'id_ID',
+    label: 'Bahasa Indonesia',
+    shortLabel: 'ID',
+    dir: 'ltr',
+  },
+  {
+    code: 'nl',
+    htmlLang: 'nl',
+    ogLocale: 'nl_NL',
+    label: 'Nederlands',
+    shortLabel: 'NL',
+    dir: 'ltr',
+  },
+  {
+    code: 'ar',
+    htmlLang: 'ar',
+    ogLocale: 'ar_SA',
+    label: 'العربية',
+    shortLabel: 'عر',
+    dir: 'rtl',
+  },
+  {
+    code: 'tr',
+    htmlLang: 'tr',
+    ogLocale: 'tr_TR',
+    label: 'Türkçe',
+    shortLabel: 'TR',
+    dir: 'ltr',
+  },
+  {
+    code: 'uk',
+    htmlLang: 'uk',
+    ogLocale: 'uk_UA',
+    label: 'Українська',
+    shortLabel: 'UK',
+    dir: 'ltr',
+  },
 ] as const;
 
 export type LandingLocaleCode = (typeof LANDING_LOCALES)[number]['code'];
@@ -5212,30 +5348,19 @@ export function getHomeFaq(
 }
 
 export function localePath(locale: LandingLocaleCode, pathname = '/'): string {
+  // Inori: single-locale (en). No locale prefix in URLs.
   const { pathname: basePathname } = stripLocaleFromPath(pathname);
   const normalized = basePathname.startsWith('/') ? basePathname : `/${basePathname}`;
-  if (locale === DEFAULT_LOCALE) return normalized;
-  if (normalized === '/') return `/${locale}/`;
-  return `/${locale}${normalized}`;
+  return normalized;
 }
 
 export function stripLocaleFromPath(pathname = '/'): {
   locale: LandingLocaleCode;
   pathname: string;
 } {
+  // Inori: single-locale (en). No locale prefix in URLs.
   const [rawPath = '/', suffix = ''] = pathname.split(/(?=[?#])/);
   const normalized = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
-  const segments = normalized.split('/').filter(Boolean);
-  const first = segments[0];
-
-  if (isLandingLocale(first)) {
-    const rest = segments.slice(1).join('/');
-    return {
-      locale: first,
-      pathname: `/${rest}${rest ? '/' : ''}${suffix}`,
-    };
-  }
-
   return { locale: DEFAULT_LOCALE, pathname: `${normalized}${suffix}` };
 }
 

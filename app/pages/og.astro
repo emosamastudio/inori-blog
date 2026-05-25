@@ -15,6 +15,10 @@
  */
 import GoogleAnalytics from '../_components/google-analytics.astro';
 import { heroImage } from '../image-assets';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/inter-tight';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/playfair-display';
 
 const title = 'Inori — A quiet light in the digital dark.';
 ---
@@ -27,26 +31,20 @@ const title = 'Inori — A quiet light in the digital dark.';
     <meta name="viewport" content="width=1200, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <GoogleAnalytics />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
     <style>
       :root {
         --ink: #14110b;
         --ink-2: #1c1810;
         --ink-3: #2a241a;
         --paper: #e8e3f0;
-        --paper-warm: #d8cfb6;
-        --paper-mute: #8d8472;
-        --paper-faint: #5b5648;
-        --coral: #ed6f5c;
-        --coral-soft: #f08e7c;
+        --paper-warm: #d0c8dc;
+        --paper-mute: #9089a2;
+        --paper-faint: #5a5580;
+        --coral: #c4a7d4;
+        --coral-soft: #d4bde0;
         --mustard: #e9b94a;
-        --line: rgba(239, 231, 210, 0.14);
-        --line-soft: rgba(239, 231, 210, 0.07);
+        --line: rgba(225, 219, 235, 0.14);
+        --line-soft: rgba(225, 219, 235, 0.07);
         --serif: 'Playfair Display', 'Times New Roman', serif;
         --sans: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         --body: 'Inter', -apple-system, system-ui, sans-serif;
@@ -74,7 +72,7 @@ const title = 'Inori — A quiet light in the digital dark.';
         height: 630px;
         overflow: hidden;
         background:
-          radial-gradient(circle at 88% 22%, rgba(237, 111, 92, 0.10) 0, transparent 38%),
+          radial-gradient(circle at 88% 22%, rgba(196, 167, 212, 0.10) 0, transparent 38%),
           radial-gradient(circle at 12% 90%, rgba(233, 185, 74, 0.06) 0, transparent 42%),
           linear-gradient(180deg, #14110b 0%, #1a1610 60%, #14110b 100%);
       }
@@ -162,13 +160,13 @@ const title = 'Inori — A quiet light in the digital dark.';
         padding: 5px 10px;
         border: 1px solid var(--line);
         border-radius: 999px;
-        background: rgba(239, 231, 210, 0.04);
+        background: rgba(225, 219, 235,0.04);
       }
 
       .tag.coral {
         color: var(--coral);
-        border-color: rgba(237, 111, 92, 0.35);
-        background: rgba(237, 111, 92, 0.08);
+        border-color: rgba(196, 167, 212, 0.35);
+        background: rgba(196, 167, 212, 0.08);
       }
 
       /* big serif headline */
@@ -239,7 +237,7 @@ const title = 'Inori — A quiet light in the digital dark.';
           linear-gradient(180deg, #1f1b13, #15110a);
         box-shadow:
           0 30px 80px -20px rgba(0, 0, 0, 0.6),
-          inset 0 0 1px rgba(239, 231, 210, 0.06);
+          inset 0 0 1px rgba(225, 219, 235,0.06);
       }
 
       .art-frame img {
@@ -259,7 +257,7 @@ const title = 'Inori — A quiet light in the digital dark.';
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(circle at 25% 12%, rgba(237, 111, 92, 0.10) 0, transparent 45%),
+          radial-gradient(circle at 25% 12%, rgba(196, 167, 212, 0.10) 0, transparent 45%),
           linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.55) 100%);
         pointer-events: none;
       }
@@ -300,11 +298,11 @@ const title = 'Inori — A quiet light in the digital dark.';
         width: 78px;
         height: 78px;
         border-radius: 999px;
-        background: radial-gradient(circle at 30% 28%, #f5876f 0%, #ed6f5c 55%, #c54a3a 100%);
+        background: radial-gradient(circle at 30% 28%, #d4b8e0 0%, #c4a7d4 55%, #9b7db8 100%);
         box-shadow:
-          0 0 0 1px rgba(237, 111, 92, 0.35),
-          0 0 32px rgba(237, 111, 92, 0.55),
-          0 18px 40px -10px rgba(237, 111, 92, 0.45);
+          0 0 0 1px rgba(196, 167, 212, 0.35),
+          0 0 32px rgba(196, 167, 212, 0.55),
+          0 18px 40px -10px rgba(196, 167, 212, 0.45);
         display: grid;
         place-items: center;
         font-family: var(--mono);

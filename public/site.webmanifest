@@ -1,6 +1,6 @@
 {
-  "name": "Open Design",
-  "short_name": "Open Design",
+  "name": "Inori",
+  "short_name": "Inori",
   "description": "The official Open Design site for the open-source, local-first Claude Design alternative.",
   "icons": [
     {
@@ -14,7 +14,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#efe7d2",
-  "background_color": "#efe7d2",
+  "theme_color": "#e8e3f0",
+  "background_color": "#e8e3f0",
   "display": "standalone"
 }

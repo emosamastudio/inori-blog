@@ -17,4 +17,16 @@ const blog = defineCollection({
     .passthrough(),
 });
 
-export const collections = { blog };
+const pages = defineCollection({
+  loader: glob({
+    pattern: ['*.md', '!_*.md'],
+    base: './app/content/pages',
+  }),
+  schema: z
+    .object({
+      title: z.string().optional(),
+    })
+    .passthrough(),
+});
+
+export const collections = { blog, pages };

@@ -150,10 +150,6 @@ const blogJsonLd =
 <meta name='description' content={props.description} />
 <meta name='theme-color' content='#e8e3f0' />
 <link rel='canonical' href={canonical} />
-{alternateLinks.map((entry) => (
-  <link rel='alternate' hreflang={entry.hreflang} href={entry.href} />
-))}
-<link rel='alternate' hreflang='x-default' href={xDefaultHref} />
 <link rel='alternate' type='application/rss+xml' title='Inori Blog' href={rssUrl} />
 <FaviconLinks />
 <ResourceHints />
@@ -169,9 +165,6 @@ const blogJsonLd =
 <meta property='og:url' content={canonical} />
 <meta property='og:image' content={image} />
 <meta property='og:locale' content={localeDef.ogLocale} />
-{LANDING_LOCALES.filter((entry) => entry.code !== locale).map((entry) => (
-  <meta property='og:locale:alternate' content={entry.ogLocale} />
-))}
 
 {props.kind === 'article' && (
   <>

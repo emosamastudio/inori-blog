@@ -8,7 +8,6 @@
 
 import {
   DEFAULT_LOCALE,
-  localizedHref,
   type LandingLocaleCode,
 } from '../i18n';
 
@@ -23,7 +22,7 @@ export function Header({
   locale = DEFAULT_LOCALE,
   brandHref = '#top',
 }: HeaderProps) {
-  const href = (path: string) => localizedHref(path, locale);
+  const href = (path: string) => path;
   const homeBrandHref = brandHref === '/' ? href('/') : brandHref;
 
   return (

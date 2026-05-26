@@ -1,28 +1,10 @@
 ---
 /**
- * Inori Blog — topbar with locale switcher.
+ * Inori Blog — topbar.
  *
- * Thin strip above the nav. GitHub link on left, locale switcher on right.
- * The locale dropdown shows all 17 supported languages.
+ * Thin strip above the nav. GitHub link on left.
+ * Locale switcher removed — single-language (Chinese) blog.
  */
-import {
-  DEFAULT_LOCALE,
-  LANDING_LOCALES,
-  getLocaleDefinition,
-  isLandingLocale,
-  localePath,
-  stripLocaleFromPath,
-} from '../i18n';
-
-const rawLocale = Astro.props.locale ?? DEFAULT_LOCALE;
-const locale = isLandingLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-const localeDef = getLocaleDefinition(locale);
-const { pathname: basePath } = stripLocaleFromPath(Astro.url.pathname);
-
-const localeOptions = LANDING_LOCALES.map((entry) => ({
-  ...entry,
-  href: localePath(entry.code, basePath),
-}));
 ---
 
 <div class='topbar' data-od-id='topbar'>
@@ -32,31 +14,6 @@ const localeOptions = LANDING_LOCALES.map((entry) => ({
         GitHub
       </a>
     </span>
-    <span class='topbar-right'>
-      <details class='locale-switch' data-locale-switch>
-        <summary class='locale-trigger' aria-label='Switch language'>
-          <span class='locale-trigger-code'>{locale.toUpperCase()}</span>
-          <svg class='locale-trigger-caret' viewBox='0 0 8 5' aria-hidden='true' focusable='false'>
-            <path d='M0.5 0.75 L4 4 L7.5 0.75' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='square' />
-          </svg>
-        </summary>
-        <div class='locale-menu' role='menu'>
-          {localeOptions.map((entry) => (
-            <a
-              class:list={['locale-menu-item', { 'is-active': entry.code === locale }]}
-              role='menuitem'
-              data-locale-link
-              data-locale-code={entry.code}
-              href={entry.href}
-              lang={entry.htmlLang}
-              aria-current={entry.code === locale ? 'true' : undefined}
-            >
-              <span class='locale-menu-code'>{entry.code.toUpperCase()}</span>
-              <span class='locale-menu-label'>{entry.label}</span>
-            </a>
-          ))}
-        </div>
-      </details>
-    </span>
+    <span class='topbar-right' />
   </div>
 </div>

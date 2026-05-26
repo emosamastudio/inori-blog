@@ -22,10 +22,8 @@ import SeoHead from '../../_components/seo-head.astro';
 import SiteFooter from '../../_components/site-footer.astro';
 import Topbar from '../../_components/topbar.astro';
 import {
+  DEFAULT_LOCALE,
   getLocaleDefinition,
-  localeFromPath,
-  localizedHref,
-  type LandingLocaleCode,
 } from '../../i18n';
 import {
   explicitLocalizedString,
@@ -34,9 +32,9 @@ import {
 import '../../globals.css';
 import '../../sub-pages.css';
 
-const locale = localeFromPath(Astro.url.pathname);
+const locale = DEFAULT_LOCALE;
 const localeDef = getLocaleDefinition(locale);
-const href = (path: string) => localizedHref(path, locale);
+const href = (path: string) => path;
 
 // Localized post field helper
 const localizedPostField = (post: (typeof posts)[number], field: 'title' | 'summary' | 'category') => {

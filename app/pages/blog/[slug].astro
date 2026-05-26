@@ -16,10 +16,8 @@ import SeoHead from '../../_components/seo-head.astro';
 import SiteFooter from '../../_components/site-footer.astro';
 import Topbar from '../../_components/topbar.astro';
 import {
+  DEFAULT_LOCALE,
   getLocaleDefinition,
-  localeFromPath,
-  localizedHref,
-  type LandingLocaleCode,
 } from '../../i18n';
 import {
   explicitLocalizedString,
@@ -38,9 +36,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const locale = localeFromPath(Astro.url.pathname);
+const locale = DEFAULT_LOCALE;
 const localeDef = getLocaleDefinition(locale);
-const href = (path: string) => localizedHref(path, locale);
+const href = (path: string) => path;
 
 // Localized content — three-tier fallback:
 //   1. i18n.<locale>.<field> in frontmatter (hand-translated)

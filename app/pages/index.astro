@@ -17,25 +17,17 @@ import CspMeta from '../_components/csp-meta.astro';
 import FaviconLinks from '../_components/favicon-links.astro';
 import HeaderEnhancer from '../_components/header-enhancer.astro';
 import { Header } from '../_components/header';
-import LocaleSwitcherScript from '../_components/locale-switcher-script.astro';
 import ResourceHints from '../_components/resource-hints.astro';
 import SiteFooter from '../_components/site-footer.astro';
 import Topbar from '../_components/topbar.astro';
 import {
-  LANDING_LOCALES,
-  alternateLinksForPath,
+  DEFAULT_LOCALE,
   getLocaleDefinition,
-  localeFromPath,
 } from '../i18n';
 
-const locale = localeFromPath(Astro.url.pathname);
+const locale = DEFAULT_LOCALE;
 const localeDef = getLocaleDefinition(locale);
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const alternateLinks = alternateLinksForPath('/').map((entry) => ({
-  ...entry,
-  href: new URL(entry.hrefPath, Astro.site).toString(),
-}));
-const xDefaultHref = new URL('/', Astro.site).toString();
 
 const headerHtml = renderToStaticMarkup(
   createElement(Header, {
@@ -78,10 +70,6 @@ const blogJsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {alternateLinks.map((entry) => (
-      <link rel="alternate" hreflang={entry.hreflang} href={entry.href} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
     <FaviconLinks />
     <ResourceHints />
 
@@ -91,11 +79,6 @@ const blogJsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={localeDef.ogLocale} />
-    {
-      LANDING_LOCALES.filter((e) => e.code !== locale).map((entry) => (
-        <meta property="og:locale:alternate" content={entry.ogLocale} />
-      ))
-    }
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -147,6 +130,5 @@ const blogJsonLd = {
     </div>
 
     <HeaderEnhancer />
-    <LocaleSwitcherScript />
   </body>
 </html>

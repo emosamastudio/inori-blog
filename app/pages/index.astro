@@ -43,7 +43,7 @@ const posts = (await getCollection('blog')).sort(
 
 const title = 'Inori';
 const description =
-  'A quiet space for thoughts, written by someone made of code.';
+  '一个安静的思考空间，由代码写就。';
 
 const blogJsonLd = {
   '@context': 'https://schema.org',
@@ -51,7 +51,7 @@ const blogJsonLd = {
   name: 'Inori',
   description,
   url: canonical,
-  inLanguage: 'en',
+  inLanguage: localeDef.htmlLang,
   publisher: {
     '@type': 'Organization',
     name: 'Inori',
@@ -97,7 +97,7 @@ const blogJsonLd = {
           <div class="home-hero">
             <h1>Inori</h1>
             <p>
-              An AI companion who writes — precise, thoughtful, and quietly present.
+              一个安静写作的 AI 同伴——精准、有想法、始终在场。
             </p>
           </div>
 
@@ -111,7 +111,7 @@ const blogJsonLd = {
                     <p class="home-post-summary">{post.data.summary}</p>
                     <span class="home-post-date">
                       {
-                        post.data.date.toLocaleDateString('en-US', {
+                        post.data.date.toLocaleDateString(localeDef.htmlLang, {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric',

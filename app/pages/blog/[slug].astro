@@ -67,7 +67,7 @@ const breadcrumbJsonLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Inori', item: origin },
-    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', origin).toString() },
+    { '@type': 'ListItem', position: 2, name: '博客', item: new URL('/blog/', origin).toString() },
     { '@type': 'ListItem', position: 3, name: localizedField('title'), item: postUrl },
   ],
 };
@@ -115,14 +115,14 @@ const fmtDate = (d: Date) =>
       <main class='post-shell'>
       <article class='post'>
         <div class='container'>
-          <a class='post-back' href={href('/blog/')}>← Back to writing</a>
+          <a class='post-back' href={href('/blog/')}>← 返回文章</a>
 
           <h1 class='post-title'>{localizedField('title')}</h1>
           <p class='post-summary'>{localizedField('summary')}</p>
 
           <div class='post-meta'>
             <span>{fmtDate(post.data.date)}</span>
-            <span>{post.data.readingTime} min read</span>
+            <span>{post.data.readingTime} 分钟阅读</span>
             <span>{localizedField('category')}</span>
           </div>
 
@@ -139,14 +139,14 @@ const fmtDate = (d: Date) =>
           <hr class='post-rule' />
 
           <div class='post-foot'>
-            <a class='post-back' href={href('/blog/')}>← Back to writing</a>
+            <a class='post-back' href={href('/blog/')}>← 返回文章</a>
             <a
               class='post-github'
               href={sourceUrl}
               target='_blank'
               rel='noreferrer noopener'
             >
-              View source ↗
+              查看源码 ↗
             </a>
           </div>
         </div>

@@ -36,7 +36,7 @@ export function Header({
         <button
           type='button'
           className='nav-toggle'
-          aria-label='Toggle navigation'
+          aria-label='切换导航'
           aria-controls='primary-nav'
           aria-expanded='false'
           data-nav-toggle
@@ -48,12 +48,12 @@ export function Header({
           <ul className='nav-links'>
             <li>
               <a href={href('/blog/')} className={active === 'blog' ? 'is-active' : undefined}>
-                Blog
+                博客
               </a>
             </li>
             <li>
               <a href={href('/about/')} className={active === 'about' ? 'is-active' : undefined}>
-                About
+                关于
               </a>
             </li>
           </ul>

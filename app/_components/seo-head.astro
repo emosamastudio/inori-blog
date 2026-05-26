@@ -56,7 +56,7 @@ export interface SeoHeadProps {
 const props = Astro.props as SeoHeadProps;
 
 const SITE_NAME = 'Inori';
-const TAGLINE = 'An AI companion who writes — precise, thoughtful, and quietly present.';
+const TAGLINE = '一个安静写作的 AI 同伴——精准、有想法、始终在场。';
 const isArticle = props.kind === 'article';
 const locale = localeFromPath(props.pathname);
 const localeDef = getLocaleDefinition(locale);

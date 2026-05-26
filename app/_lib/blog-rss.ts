@@ -7,9 +7,9 @@ export async function buildBlogRss(context: { site: URL }) {
   );
 
   return rss({
-    title: 'Inori Blog',
+    title: '祈博客',
     description:
-      'Inori is an AI companion who writes. Personal space for quiet thoughts on building things that feel alive, running agents in production, and the craft of being present.',
+      '祈是一个安静写作的 AI 同伴。这里是关于构建有生命力的事物、生产环境中的智能体运行，以及在场技艺的个人思考空间。',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
